@@ -26,11 +26,21 @@
 	<context:component-scan base-package="com.edu.springshop.model"/>
 	
 	
+	<!-- 데이터 변환 객체 -->
 	<bean id="mappingJackson2HttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 		<property name="supportedMediaTypes">
 			<value>application/json;charset=utf-8</value>
 		</property>
 	</bean>
+	
+	<!-- 파일 업로드 객체 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSizePerFile" value="3145728"/>
+	</bean>
+	
+	<!-- 파일 매니저 -->
+	<bean id="fileManager" class="com.edu.springshop.util.FileManager"/>
+	
 	
 	
 </beans>

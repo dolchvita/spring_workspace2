@@ -210,7 +210,14 @@
 	-----------------------*/
 	function regist(){
 		$.ajax({
-			url:""
+			url:"/admin/rest/category",
+			type:"POST",
+			data:{
+				category_name:$("input[name='category_name']").val()
+			},
+			success:function(result, status, xhr){
+				alert(xhr.msg);
+			}
 		});
 	}
 	

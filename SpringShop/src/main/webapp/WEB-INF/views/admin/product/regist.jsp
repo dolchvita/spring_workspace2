@@ -76,7 +76,7 @@
 					<select class="form-control" name="category_idx">
 						<option value="0">카테고리 선택</option>
 						<%for(Category category:categoryList){ %>
-						<option value="<%=category.getCategiry_idx()%>"><%=category.getCategory_name() %></option>
+						<option value="<%=category.getCategory_idx()%>"><%=category.getCategory_name() %></option>
 						<%} %>
 					</select>
 				</div>
@@ -110,7 +110,7 @@
 
 				<div class="form-group row">
 					<div class="col">
-						<input type="file" name="file" class="form-control" multiple>
+						<input type="file" name="photo" class="form-control" multiple>
 					</div>
 				</div>
 
@@ -159,7 +159,7 @@
 	const imagebox={
 			template:`
 				<div class="box-style">
-					<div @click="getDetail(p_idx)"><a href="#">X</a></div>
+					<div @click="delImg(p_idx)"><a href="#">X</a></div>
 					<img :src="p_src"/>
 				</div>
 			`,
@@ -171,8 +171,14 @@
 				};
 			},
 			methods:{
-				getDetail:function(idx){
-					alert(idx);
+				delImg:function(idx){
+					for(let i=0;i<app1.imageList.length;i++){
+						let json=app1.imageList[i];
+						
+						if(json.key == idx){
+							app1.imageList.splice(i , 1); //요소,개수
+						}
+					}
 				}
 			}
 		}
@@ -208,7 +214,6 @@
 	function preview(files){
 		for(let i=0; i<files.length; i++){
 			let file=files[i];
-			console.log(file);
 			
 			if(checkDuplicate(file)<1){
 				let reader=new FileReader();
@@ -229,14 +234,37 @@
 	}
 	
 	function regist(){
+		let formData=new FormData();
+		formData.append("category_idx", $("select[name='category_idx']").val());
+		formData.append("product_name", $("input[name='product_name']").val());
+		formData.append("brand", $("input[name='brand']").val());
+		formData.append("price", $("input[name='price']").val());
+		formData.append("discount", $("input[name='discount']").val());
+		formData.append("detail", $("textarea[name='detail']").val());
 		
+		for(let i=0; i<app1.imageList.length; i++){
+			let json=app1.imageList[i];
+			formData.append("photo", json.file);			
+		}
+		
+		console.log("전송할 폼 데이터 ", formData);
+ 		$.ajax({
+			url:"/admin/rest/product",
+			type:"post",
+			contentType:false,
+			processData:false,
+			data:formData,
+			success:function(result, status, xhr){
+				alert(xhr.msg);
+			}
+		});
 	}
 	
 	
 	$(function(){
 		init();
 		
-		$("input[name='file']").change(function(){
+		$("input[name='photo']").change(function(){
 			preview(this.files);
 		});
 
