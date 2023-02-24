@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"	
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!--DB 자원 등록 -->
+	<jee:jndi-lookup id="dataSource" 
+							jndi-name="jdbc/oracle" 
+							resource-ref="true"/>
+	
+	<!-- 트랜잭션매니저 등록 -->
+	<bean id="transactionManager" 
+				class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+			  	p:dataSource-ref="dataSource"/>
+	
+	<!--sqlSession 얻기 위한 과정 -->
+	<bean id="sqlSessionFactoryBean" 
+				class="org.mybatis.spring.SqlSessionFactoryBean"
+				p:dataSource-ref="dataSource"
+				p:configLocation="com/edu/mvc1/mybatis/config.xml"/>
+				
+	<bean id="sqlSessionTemplate" 
+				class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" 
+									ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	
+	<context:component-scan base-package="com.edu.mvc1.client.model"/>
+				
+				
+</beans>

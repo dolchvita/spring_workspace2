@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<typeAliases>
+	<typeAlias type="com.edu.springboard.domain.Gallery" alias="Gallery"/>
+	<typeAlias type="com.edu.springboard.domain.Photo" alias="Photo"/>
+	<typeAlias type="com.edu.springboard.domain.Notice" alias="Notice"/>
+</typeAliases>
+
+<!-- 여기 적힌 설정 정보들을 스프링에 직접 입력해보자! -->
+
+  <mappers>
+    <mapper resource="com/edu/springboard/mybatis/GalleryMapper.xml"/>
+    <mapper resource="com/edu/springboard/mybatis/PhotoMapper.xml"/>
+    <mapper resource="com/edu/springboard/mybatis/NoticeMapper.xml"/>
+  </mappers>
+</configuration>

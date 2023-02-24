@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Gallery">
+
+	<resultMap  type="Gallery" id="galleryMap">
+		<id column="gallery_idx" property="gallery_idx"/>
+		<result column="title" property="title"/>
+		<result column="writer" property="writer"/>
+		<result column="content" property="content"/>
+		<result column="hit" property="hit"/>
+		
+		<collection column="gallery_idx" property="photoList" 
+						 javaType="java.util.List" ofType="Photo"
+						 select="Photo.selectByGallery"/>
+	</resultMap>
+
+
+	<select id="selectAll" resultMap="galleryMap">
+		select * from gallery
+	</select>
+
+	<select id="select" parameterType="int" resultMap="galleryMap">
+		select * from gallery where gallery_idx=#{gallery_idx}
+	</select>
+
+	<insert id="insert" parameterType="Gallery">
+		insert into gallery(gallery_idx, title, writer, content, )
+		values(seq_gallery.nextval, #{title}, #{writer}, #{content})
+		
+		<selectKey keyColumn="gallery_idx" keyProperty="gallery_idx" order="AFTER" resultType="int">
+			select seq_gallery.currval as gallery_idx from dual
+		</selectKey>
+	</insert>
+
+	<update id="update" parameterType="Gallery">
+		update gallery set title=#{title}, writer={writer}, content=#{content}
+		where gallery_idx=#{gallery_idx}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete gallery where gallery_idx=#{gallery_idx}
+	</delete>
+
+</mapper>
