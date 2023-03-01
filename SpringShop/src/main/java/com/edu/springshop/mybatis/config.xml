@@ -7,11 +7,13 @@
 	<typeAlias type="com.edu.springshop.domain.Category" alias="Category"/>
 	<typeAlias type="com.edu.springshop.domain.Product" alias="Product"/>
 	<typeAlias type="com.edu.springshop.domain.Pimg" alias="Pimg"/>
+	<typeAlias type="com.edu.springshop.domain.Admin" alias="Admin"/>
 </typeAliases>
 
   <mappers>
     <mapper resource="com/edu/springshop/mybatis/CategoryMapper.xml"/>
     <mapper resource="com/edu/springshop/mybatis/ProductMapper.xml"/>
     <mapper resource="com/edu/springshop/mybatis/PimgMapper.xml"/>
+    <mapper resource="com/edu/springshop/mybatis/AdminMapper.xml"/>
   </mappers>
 </configuration>

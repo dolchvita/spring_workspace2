@@ -19,6 +19,8 @@ public class RestProductController {
 	
 	@PostMapping("/product")
 	public String regist(Product product, HttpServletRequest request) {
+		logger.info("상품 "+product);
+		
 		ServletContext application=request.getSession().getServletContext();
 		String dir=application.getRealPath("/resources/data/");
 		logger.info(dir);

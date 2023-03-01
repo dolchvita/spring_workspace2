@@ -25,8 +25,8 @@
 
 
 	<insert id="insert" parameterType="Product">
-		insert into product(category_idx, product_name, brand, price, discount, detail)
-		values(#{category.category_idx}, #{product_name}, #{brand}, #{price}, #{discount}, #{detail})
+		insert into product(product_idx, category_idx, product_name, brand, price, discount, detail)
+		values(seq_product.nextval, #{category.category_idx}, #{product_name}, #{brand}, #{price}, #{discount}, #{detail})
 		
 		<selectKey order="AFTER" keyColumn="product_idx" keyProperty="product_idx" resultType="int">
 			select seq_product.currval as product_idx from dual

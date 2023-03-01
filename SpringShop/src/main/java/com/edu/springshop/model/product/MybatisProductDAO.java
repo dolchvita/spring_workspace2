@@ -3,6 +3,7 @@ package com.edu.springshop.model.product;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.edu.springshop.domain.Product;
@@ -10,6 +11,7 @@ import com.edu.springshop.exception.ProductException;
 
 @Repository
 public class MybatisProductDAO implements ProductDAO{
+	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 

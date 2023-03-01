@@ -2,6 +2,8 @@ package com.edu.springshop.admin.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +18,11 @@ public class CategoryController {
 	private CategoryService categoryService;
 	
 	@GetMapping("/category/main")
-	public ModelAndView getName() {
+	public ModelAndView getName(HttpServletRequest request) {
 		List<Category> categoryList=categoryService.selectAll();
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("categoryList", categoryList);
-		mav.setViewName("admin/category/regist");
+		mav.setViewName("admin/category/main");
 		return mav;
 	}
 	

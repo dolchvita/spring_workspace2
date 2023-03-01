@@ -3,10 +3,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
-
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd 
+		http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	<!-- HandlerMapping : DefaultAnnotation -->
+	
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
@@ -22,7 +25,19 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.edu.springshop.admin.controller" />
+
+
+	<!-- 예외 객체 -->
+	<beans:bean class="com.edu.springshop.aop.AdminGlobalException" id="adminGlobalException"/>
+
+	<!-- AOP 적용! -->
+	<beans:bean id="adminLoginCheckAdvice" class="com.edu.springshop.aop.AdminLoginCheckAdvice"/>
 	
-	
+	<aop:config>
+		<aop:aspect id="adminAspect" ref="adminLoginCheckAdvice">
+			<aop:pointcut expression="execution(public * com.edu.springshop.admin.controller..*(..))" id="adminLoginCheckPointcut"/>
+			<aop:around method="sessionCheck" pointcut-ref="adminLoginCheckPointcut"/>
+		</aop:aspect>
+	</aop:config>
 	
 </beans:beans>

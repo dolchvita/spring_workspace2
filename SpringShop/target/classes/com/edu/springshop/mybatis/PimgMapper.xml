@@ -8,7 +8,7 @@
 
 	<insert id="insert" parameterType="Pimg">
 		insert into pimg(pimg_idx, product_idx, filename)
-		values(seq_pimg.nextval, #{product_idx}, #{filename})
+		values(seq_pimg.nextval, #{product.product_idx}, #{filename})
 	</insert>
 
 	<delete id="delete" parameterType="int">
