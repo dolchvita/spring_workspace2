@@ -7,8 +7,8 @@
 	</select>
 
 	<insert id="insert" parameterType="Admin">
-		insert into admin(admin_idx, admin_id, admin_pass, admin_name)
-		values(seq_admin.nextval, #{admin_id}, #{admin_pass}, #{admin_name});
+		insert into admin(admin_id, admin_pass, admin_name)
+		values(#{admin_id}, #{admin_pass}, #{admin_name});
 	</insert>
 
 </mapper>

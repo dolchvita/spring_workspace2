@@ -12,7 +12,7 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
-	<jee:jndi-lookup jndi-name="jdbc/oracle" id="dataSource" resource-ref="true"/>
+	<jee:jndi-lookup jndi-name="jdbc/mysql" id="dataSource" resource-ref="true"/>
 	
 	<!-- 스프링이 지원하는 트랜잭션 매니저
 			jdbc : DataSourceTransactionManager

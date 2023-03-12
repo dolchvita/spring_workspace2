@@ -38,4 +38,21 @@
 		</aop:aspect>
 	</aop:config>
 	
+	
+	
+	<!-- 구글 로그인 정보 관련 정보 등록 -->
+	<beans:bean class="org.springframework.social.google.connect.GoogleConnectionFactory" id="googleConnectionFactory">
+		<beans:constructor-arg value="407147823322-8e0hth42qg5lgm8tokgj9asuni138a61.apps.googleusercontent.com"/>
+		<beans:constructor-arg value="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"/>
+	</beans:bean>
+	
+	<beans:bean class="org.springframework.social.oauth2.OAuth2Parameters" id="OAuth2Parameters">
+		<beans:property name="scope" value="https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"/>
+		<beans:property name="redirectUri" value="http://localhost:7777/member/auth/google"/>
+	</beans:bean>
+	
+	<beans:bean class="com.edu.springshop.sns.GoogleLogin" id="googleLogin"/>
+	
+	
+	
 </beans:beans>

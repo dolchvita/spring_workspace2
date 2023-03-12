@@ -11,8 +11,8 @@
 	</select>
 
 	<insert id="insert" parameterType="Category">
-		insert into category(category_idx, category_name)
-		values(seq_category.nextval, #{category_name})
+		insert into category(category_name)
+		values(#{category_name})
 	</insert>
 
 	<update id="update" parameterType="Category">

@@ -5,26 +5,22 @@
 <html lang="zxx">
 
 <head>
-	<%@ include file="/inc/header.jsp"%>
+	<%@ include file="../inc/header.jsp"%>
 </head>
 
 <body>
     <!-- Page Preloder -->
-	<%@ include file="/inc/preloder.jsp"%>
+	<%@ include file="../inc/preloder.jsp"%>
 
 
     <!-- Offcanvas Menu Begin -->
-    
-    <!-- jsp자체에서 지원하는 태그!! 
-    	  왜 써야 하나? 사실 jsp는 사실 디자인 영역이므로, 개발자만 사용하는 것이 아니라
-    	  퍼블리셔, 웹디자이너와 공유한다. 이때 java에 대한 비전문가들은 java 코드를 이해할 수 없기 때문에
-    	  그들이 쉽게 지원해준다 (협업 때문에)-->
-	<%@ include file="/inc/main_navi.jsp"%>
+
+	<%@ include file="../inc/main_navi.jsp"%>
     <!-- Offcanvas Menu End -->
 
 
     <!-- Header Section Begin -->
-    <%@ include file="/inc/header_section.jsp"%>
+    <%@ include file="../inc/header_section.jsp"%>
     <!-- Header Section End -->
 
 	
@@ -41,8 +37,8 @@
 							<input type="text" class="form-control" placeholder="Enter password" name="pass">
 						</div>
 						
-						<button type="button" class="btn btn-success" id="bt_login">로그인</button>
-						<button type="button" class="btn btn-success" id="bt_regist">신규가입</button>
+						<button type="button" class="btn btn-primary" id="bt_google">구글 로그인</button>
+						
 					</form>
 				</div>
 			</div>
@@ -52,37 +48,31 @@
 	
 	
 	<!-- Instagram Begin -->
-	<%@ include file="/inc/insta.jsp" %>
+	<%@ include file="../inc/insta.jsp" %>
 	<!-- Instagram End -->
 	
 	<!-- Footer Section Begin -->
-	<%@ include file="/inc/footer.jsp" %>
+	<%@ include file="../inc/footer.jsp" %>
 	<!-- Footer Section End -->
 	
 	<!-- Search Begin -->
-	<%@ include file="/inc/search.jsp" %>
+	<%@ include file="../inc/search.jsp" %>
 	<!-- Search End -->
 	
 	<!-- Js Plugins -->
-	<%@ include file="/inc/footer_link.jsp" %>
+	<%@ include file="../inc/footer_link.jsp" %>
 
 <script>
 
 	
 
 	$(function(){
-		$("#bt_login").click(function(){
-			$("#form1").attr({
-				action:"/member/login.jsp",
-				method:"post"
-			});
-			$("#form1").submit();
+		$("#bt_google").click(function(){
+			// 반환받은 url 주소로 연결해주기
+			location.href="<%=request.getAttribute("url")%>";
+			// 승인 시 callback 함수 작동!
 		});
 		
-		$("#bt_regist").click(function(){
-			$(location).attr("href", "/member/joinform.jsp");
-		});
-
 	});
 </script>
 </body>

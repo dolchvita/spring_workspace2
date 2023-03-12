@@ -20,7 +20,7 @@ public class CategoryAdvice {
 	
 	
 	// 서비스의 selectAll()을 호출하여 MaV에 저장
-	public Object getCategoryList(ProceedingJoinPoint joinPoint){
+	public Object getCategoryList(ProceedingJoinPoint joinPoint) throws Throwable{
 		
 		// 원래 호출하려던 메서드들 호출 전, 후에 관여할 수 있는 기능 지원
 		String target=joinPoint.getTarget().getClass().getName();
@@ -35,23 +35,18 @@ public class CategoryAdvice {
 		ModelAndView mav=null;
 		
 		Object obj=null;
+
+		obj=joinPoint.proceed();		// 원래 호출하려던 메서드 호출!
 		
-		try {
-			obj=joinPoint.proceed();		// 원래 호출하려던 메서드 호출!
-			
-			
-			// obj의 자료형이 ModelAndView라면..
-			if(obj instanceof ModelAndView) {
-				mav=(ModelAndView) obj;		// 반환값
-				mav.addObject("categoryList", categoryList);
-				obj=mav;
-			}
-			
-			
-		} catch (Throwable e) {
-			e.printStackTrace();
+		
+		// obj의 자료형이 ModelAndView라면..
+		if(obj instanceof ModelAndView) {
+			mav=(ModelAndView) obj;		// 반환값
+			mav.addObject("categoryList", categoryList);
+			obj=mav;
 		}
-		
+			
+					
 		return obj;
 	}
 	

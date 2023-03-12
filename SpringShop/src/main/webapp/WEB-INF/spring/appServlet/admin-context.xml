@@ -28,6 +28,7 @@
 
 
 	<!-- 예외 객체 -->
+	<beans:bean class="com.edu.springshop.aop.RestAdminGlobalException" id="restAdminGlobalException"/>
 	<beans:bean class="com.edu.springshop.aop.AdminGlobalException" id="adminGlobalException"/>
 
 	<!-- AOP 적용! -->

@@ -1,5 +1,4 @@
 package com.edu.springshop.domain;
-
 import lombok.Data;
 
 @Data

@@ -40,13 +40,15 @@ public class RestAdminController {
 	
 	
 	
-	@ExceptionHandler(AdminException.class)
-	public ResponseEntity<Message> handle(AdminException e){
-		Message message=new Message();
-		message.setMsg(e.getMessage());
-		ResponseEntity<Message> entity=new ResponseEntity<Message>(message, HttpStatus.INTERNAL_SERVER_ERROR);
-		return entity;
-	}
+	/* 여기 예외 객체가 없으면 aop에 적용한 핸들러가 작동할 것임! */
+	
+//	@ExceptionHandler(AdminException.class)
+//	public ResponseEntity<Message> handle(AdminException e){
+//		Message message=new Message();
+//		message.setMsg(e.getMessage());
+//		ResponseEntity<Message> entity=new ResponseEntity<Message>(message, HttpStatus.INTERNAL_SERVER_ERROR);
+//		return entity;
+//	}
 	
 	
 }

@@ -40,8 +40,8 @@
                         <div class="header__right__auth">
 
 
-                            <a href="./member/loginform.jsp">Login</a>
-                            <a href="./member/joinform.jsp">Register</a>
+                            <a href="/member/authform/google">Login</a>
+                            <a href="/member/joinform">Register</a>
                             <a href="./member/logout.jsp">Logout</a>
 
                         
@@ -53,13 +53,11 @@
                             </a></li>
                             <li>
                             
-                            
                             	<a href="./payment/cartList.jsp">
                             		<span class="icon_bag_alt"></span>
                             		<div class="tip">2</div>
                             	</a>
                            
-                            
                             </li>
                         </ul>
                     </div>
